@@ -43,8 +43,11 @@ class TestPerception():
                 print(key)
 
     def test_introspect_instance_attribute_types(self, perception_obj,
-                                                 fixture_args):
+                                                 fixture_args, capsys):
         """docstring for test_get_attribute_types"""
-        for key, value in fixture_args.items():
-            assert type(value) in [type(var) for var in
-                                   vars(perception_obj).values()]
+        arguments = fixture_args.values()
+        for value in vars(perception_obj).values():
+            assert type(value) in [type(argument) for argument in
+                                   arguments]
+            with capsys.disabled():
+                print(type(value))
