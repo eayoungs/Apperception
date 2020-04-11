@@ -39,8 +39,8 @@ class TestPerception():
         # sig = inspect.signature(perception_obj.__init__)
         for key, value in fixture_args.items():
             assert key in vars(perception_obj).keys()
-            with capsys.disabled():
-                print(key)
+            # with capsys.disabled():
+            #     print(key)
 
     def test_introspect_instance_attribute_types(self, perception_obj,
                                                  fixture_args, capsys):
@@ -49,15 +49,17 @@ class TestPerception():
         for value in vars(perception_obj).values():
             assert type(value) in [type(argument) for argument in
                                    arguments]
-            with capsys.disabled():
-                print(type(value))
+            # with capsys.disabled():
+            #     print(type(value))
 
 
 class TestApperception():
     """docstring for TestApperception"""
 
     # pass
-    def test_appercept(self, perception_obj):
+    def test_appercept(self, perception_obj, capsys):
         """docstring for test_appercept"""
         this_apperception = apperception.Apperception(perception_obj)
-        assert this_apperception is True
+        with capsys.disabled():
+            print(dir(this_apperception))
+        assert this_apperception.perception

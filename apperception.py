@@ -23,3 +23,5 @@ class Apperception(ChainMap):
     """docstring for Apperception"""
     def __init__(self, *perceptions):
         super(Apperception, self).__init__()
+        for perception in perceptions:
+            self.perception = perception
